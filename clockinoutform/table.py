@@ -33,10 +33,9 @@ class Table:
                 "row2": cell[4:],
             }
         return indexed_cell
-    
+
     def render_dict(self):
         return self.unitize()
-
 
 
 class Cell:
@@ -112,13 +111,14 @@ class CellUnit:
         self.work_hours.add_text(work_hours)
 
 
-
 class CellData:
     def __init__(self, year, month, start_time, work_hours, work_day, signature_path):
         self._start_year_month = f"{year}/{month}"
         self._end_year_month = f"{year}/{month + 1}"
         self._start_time = pd.Timestamp(start_time)
-        self._end_time = pd.Timestamp(start_time) + pd.to_timedelta(work_hours, unit="H")
+        self._end_time = pd.Timestamp(start_time) + pd.to_timedelta(
+            work_hours, unit="H"
+        )
         self._work_hours = work_hours
         self._work_day = int(work_day)
         self._signature_path = signature_path
