@@ -6,7 +6,7 @@ Filling out the clock in/out form automatically for graduate assistants in NTU (
 
 ## **Documentation**
 
-1. ### Import the package and instantiate `ClockInOutForm` class.
+### 1. Import the package and instantiate `ClockInOutForm` class.
 
 ``` python
 from clockinoutform import ClockInOutForm
@@ -14,7 +14,7 @@ from clockinoutform import ClockInOutForm
 form = ClockInOutForm()
 ```
 
-2. ### Fill in the header: 
+### 2. Fill in the header: 
 * `year`: the year you've been working in
 * `month`: the year you've been working in
 * `department`: the department you are in
@@ -34,7 +34,7 @@ form.add_header_info(
 )
 ```
 
-3. ### Fill out the table:
+### 3. Fill out the table:
 
 > Date will be generated based on **business days** of the month.
 
@@ -58,7 +58,7 @@ form.add_cell_data(
 
 ```
 
-4. ### Save the docx file
+### 4. Save the docx file
 
 * `docx_path`: specify your file path and file name
 * `open_`: open the file, default=```False```
@@ -70,7 +70,7 @@ form.save(
 )
 ```
 
-5. ### Generate forms for months
+### 5. Generate forms for months
 
 ```python
 from clockinoutform import ClockInOutForm
