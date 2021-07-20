@@ -51,7 +51,7 @@ class BasicInfo:
 
     @property
     def name(self):
-        addr = self.doc.paragraphs[1].runs[7]
+        addr = self.doc.paragraphs[1].runs[6]
         return addr, addr.text
 
     @name.setter
@@ -60,7 +60,7 @@ class BasicInfo:
 
     @property
     def expected(self):
-        addr = self.doc.paragraphs[1].runs[11]
+        addr = self.doc.paragraphs[1].runs[9]
         return addr, addr.text
 
     @expected.setter
@@ -69,7 +69,7 @@ class BasicInfo:
 
     @property
     def actual(self):
-        addr = self.doc.paragraphs[1].runs[15]
+        addr = self.doc.paragraphs[1].runs[13]
         return addr, addr.text
 
     @actual.setter
