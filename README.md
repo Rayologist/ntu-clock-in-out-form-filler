@@ -69,8 +69,9 @@ form.save(
     open_=True,
 )
 ```
+---
 
-### 5. Generate forms for a period of months
+## **Tidbit: Generating forms for a period of months**
 
 ```python
 from clockinoutform import ClockInOutForm
@@ -100,7 +101,7 @@ for month in range(start_month, end_month + 1):
     )
 
     form.save(
-        docx_path=f"your/file/path/form-{month}", 
+        docx_path=f"your-file-path/form-{month}", 
         open_=True,
     )
 
