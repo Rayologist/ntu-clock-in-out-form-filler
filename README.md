@@ -70,7 +70,7 @@ form.save(
 )
 ```
 
-### 5. Generate forms for months
+### 5. Generate forms for a period of months
 
 ```python
 from clockinoutform import ClockInOutForm
