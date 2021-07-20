@@ -1,2 +1,2 @@
 # ntu-clock-in-out-form-filler
-This project aims to automatically fill out the clock in/out form for graduate assistants in NTU (National Taiwan University)
+This project focuses on filling out the clock in/out form automatically for graduate assistants in NTU (National Taiwan University)
