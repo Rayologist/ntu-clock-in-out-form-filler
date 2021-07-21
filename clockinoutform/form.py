@@ -5,11 +5,22 @@ from pathlib import Path
 
 
 class ClockInOutForm:
-    def __init__(self):
+    doc: Document
+    template_path: Path
+
+    def __init__(self) -> None:
         template_path = Path(__file__).absolute().parent / "templates" / "template.docx"
         self.doc = Document(template_path)
 
-    def add_header_info(self, year, month, department, name, expected, actual):
+    def add_header_info(
+        self,
+        year: str,
+        month: str,
+        department: str,
+        name: str,
+        expected: str,
+        actual: str,
+    ) -> None:
         info = BasicInfo(self.doc)
         info.year = str(year)
         info.month = str(month)
@@ -20,7 +31,7 @@ class ClockInOutForm:
 
     def add_cell_data(
         self, year, month, start_time, work_hours, work_day, signature_path
-    ):
+    ) -> None:
         table = Table(self.doc)
         cell_units = table.render_dict()
 
@@ -38,7 +49,7 @@ class ClockInOutForm:
             cell_unit = CellUnit(cell_units[i])
             cell_unit.fill_data(**cell_data[i])
 
-    def save(self, docx_path, open_=False):
+    def save(self, docx_path: str, open_: bool = False) -> None:
         self.doc.save(docx_path)
 
         if open_:

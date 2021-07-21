@@ -1,6 +1,8 @@
 from docx.shared import Cm, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 import pandas as pd
+from typing import Dict, Optional, List
+from ._types import Paragraph, _Cell, Document
 
 ROW_START, ROW_END = 2, 33
 FIRST_HALF_COL_START, FIRST_HALF_COL_END = 0, 3
@@ -8,11 +10,13 @@ SECOND_HALF_COL_START, SECOND_HALF_COL_END = 4, 7
 
 
 class Table:
-    def __init__(self, doc):
+    def __init__(self, doc: Document) -> None:
         self.table = doc.tables[0]
         self.table.style.font.name = "BiauKai"
 
-    def unitize(self, row_start=ROW_START, row_end=ROW_END):
+    def unitize(
+        self, row_start: int = ROW_START, row_end: int = ROW_END
+    ) -> Dict[int, Dict]:
         first_half = []
         secodn_half = []
 
@@ -39,19 +43,19 @@ class Table:
 
 
 class Cell:
-    def __init__(self, cell) -> None:
+    def __init__(self, cell: _Cell) -> None:
         self._cell = cell
 
-    def apply_basic_format(self, paragraph):
+    def apply_basic_format(self, paragraph: Paragraph) -> None:
         paragraph.style.font.size = Pt(14)
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    def add_text(self, text):
+    def add_text(self, text: str) -> None:
         paragraph_in_cell = self._cell.paragraphs[0]
         paragraph_in_cell.text = text
         self.apply_basic_format(paragraph_in_cell)
 
-    def add_signature(self, signature_path):
+    def add_signature(self, signature_path: str) -> None:
         paragraph_in_cell = self._cell.paragraphs[0]
         run = paragraph_in_cell.add_run()
         run.add_tab()
@@ -64,35 +68,35 @@ class Cell:
 
 
 class CellUnit:
-    def __init__(self, cell_unit):
+    def __init__(self, cell_unit: Dict[Dict, List[str]]) -> None:
         self._col1 = cell_unit["row1"]
         self._col2 = cell_unit["row2"]
 
     @property
-    def date(self):
+    def date(self) -> Cell:
         return Cell(self._col1[0])
 
     @property
-    def work_hours(self):
+    def work_hours(self) -> Cell:
         return Cell(self._col1[3])
 
     @property
-    def signature_start(self):
+    def signature_start(self) -> Cell:
         return Cell(self._col1[1])
 
     @property
-    def signature_end(self):
+    def signature_end(self) -> Cell:
         return Cell(self._col1[2])
 
     @property
-    def start_time(self):
+    def start_time(self) -> Cell:
         return Cell(self._col2[1])
 
     @property
-    def end_time(self):
+    def end_time(self) -> Cell:
         return Cell(self._col2[2])
 
-    def fill_data(self, **kwargs):
+    def fill_data(self, **kwargs) -> None:
         date = kwargs.get("date")
         start_time = kwargs.get("start_time")
         end_time = kwargs.get("end_time")
@@ -112,7 +116,15 @@ class CellUnit:
 
 
 class CellData:
-    def __init__(self, year, month, start_time, work_hours, work_day, signature_path):
+    def __init__(
+        self,
+        year: str,
+        month: str,
+        start_time: str,
+        work_hours: int,
+        work_day: int,
+        signature_path: str,
+    ) -> None:
         self._start_year_month = f"{year}/{month}"
         self._end_year_month = f"{year}/{month + 1}"
         self._start_time = pd.Timestamp(start_time)
@@ -123,7 +135,7 @@ class CellData:
         self._work_day = int(work_day)
         self._signature_path = signature_path
 
-    def render_dict(self, method="index"):
+    def render_dict(self, method: str = "index") -> Optional[Dict]:
         time_table = pd.DataFrame()
 
         time_table["date"] = (
