@@ -5,9 +5,6 @@ from pathlib import Path
 
 
 class ClockInOutForm:
-    doc: Document
-    template_path: Path
-
     def __init__(self) -> None:
         template_path = Path(__file__).absolute().parent / "templates" / "template.docx"
         self.doc = Document(template_path)
