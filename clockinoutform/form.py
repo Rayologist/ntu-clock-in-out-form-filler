@@ -1,4 +1,4 @@
-from .table import Table, CellUnit, CellData
+from .table import Table, Grid, CellData
 from .header import HeaderInfo
 from docx import Document
 from pathlib import Path
@@ -36,7 +36,7 @@ class ClockInOutForm:
         signature_path: str,
     ) -> None:
         table = Table(self.doc)
-        cell_units = table.render_dict()
+        grids = table.render_dict()
 
         cell_data = CellData(
             year=year,
@@ -49,8 +49,8 @@ class ClockInOutForm:
         cell_data = cell_data.render_dict()
 
         for i in range(len(cell_data)):
-            cell_unit = CellUnit(cell_units[i])
-            cell_unit.fill_data(**cell_data[i])
+            grid = Grid(grids[i])
+            grid.fill_data(**cell_data[i])
 
     def save(self, docx_path: str, open_: bool = False) -> None:
         self.doc.save(docx_path)

@@ -17,6 +17,7 @@ class Table:
     def render_dict(
         self, row_start: int = ROW_START, row_end: int = ROW_END
     ) -> Dict[int, Dict]:
+
         first_half = []
         secodn_half = []
 
@@ -64,7 +65,7 @@ class Cell:
     __str__ = __repr__
 
 
-class CellUnit:
+class Grid:
     def __init__(self, cell_unit: Dict[Dict, List[str]]) -> None:
         self._col1 = cell_unit["row1"]
         self._col2 = cell_unit["row2"]
