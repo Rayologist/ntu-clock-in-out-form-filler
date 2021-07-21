@@ -24,7 +24,7 @@ form = ClockInOutForm()
 
 
 ```python
-form.add_header_info(
+form.fill_header(
     year=2021, 
     month=7, 
     department="linguistics", 
@@ -47,7 +47,7 @@ form.add_header_info(
 
 
 ```python
-form.add_cell_data(
+form.fill_table(
     year=2021, 
     month=7, 
     start_time="14:00", 
@@ -83,7 +83,7 @@ end_month = 8
 
 for month in range(start_month, end_month + 1):
     form = ClockInOutForm()
-    form.add_header_info(
+    form.fill_header(
         year=year, 
         month=month, 
         department="linguistics", 
@@ -91,7 +91,7 @@ for month in range(start_month, end_month + 1):
         expected=40, 
         actual=40
     )
-    form.add_cell_data(
+    form.fill_table(
         year=year, 
         month=month, 
         start_time="14:00", 
