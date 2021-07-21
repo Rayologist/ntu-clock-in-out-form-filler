@@ -9,7 +9,7 @@ class ClockInOutForm:
         template_path = Path(__file__).absolute().parent / "templates" / "template.docx"
         self.doc = Document(template_path)
 
-    def add_header_info(
+    def fill_header(
         self,
         year: str,
         month: str,
@@ -26,7 +26,7 @@ class ClockInOutForm:
         info.expected = str(expected)
         info.actual = str(actual)
 
-    def add_cell_data(
+    def fill_table(
         self, year, month, start_time, work_hours, work_day, signature_path
     ) -> None:
         table = Table(self.doc)
