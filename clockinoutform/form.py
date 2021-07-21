@@ -27,7 +27,13 @@ class ClockInOutForm:
         info.actual = str(actual)
 
     def fill_table(
-        self, year, month, start_time, work_hours, work_day, signature_path
+        self,
+        year: str,
+        month: str,
+        start_time: str,
+        work_hours: int,
+        work_day: int,
+        signature_path: str,
     ) -> None:
         table = Table(self.doc)
         cell_units = table.render_dict()
