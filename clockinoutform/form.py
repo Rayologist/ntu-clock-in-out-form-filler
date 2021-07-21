@@ -1,5 +1,5 @@
 from .table import Table, CellUnit, CellData
-from .header import BasicInfo
+from .header import HeaderInfo
 from docx import Document
 from pathlib import Path
 
@@ -18,7 +18,7 @@ class ClockInOutForm:
         expected: str,
         actual: str,
     ) -> None:
-        info = BasicInfo(self.doc)
+        info = HeaderInfo(self.doc)
         info.year = str(year)
         info.month = str(month)
         info.department = department

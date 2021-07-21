@@ -18,7 +18,7 @@ class RunText:
         return text.rjust(length_rjust, padding).ljust(length_ljust, padding)
 
 
-class BasicInfo:
+class HeaderInfo:
     def __init__(self, doc: Document) -> None:
         self.doc = doc
 
