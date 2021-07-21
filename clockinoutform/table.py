@@ -9,9 +9,9 @@ FIRST_HALF_COL_START, FIRST_HALF_COL_END = 0, 3
 SECOND_HALF_COL_START, SECOND_HALF_COL_END = 4, 7
 
 
-class Table:
+class TableStacker:
     """
-    The Table objects structures the table in template.docx into a dict
+    The TableStacker object merges the table of two columns into one, and structures the merged column into a dict.
     """
 
     def __init__(self, doc: Document) -> None:
@@ -126,9 +126,9 @@ class Grid:
         self.work_hours.add_text(work_hours)
 
 
-class CellData:
+class CellDataGenerator:
     """
-    The CellData object generates all the required information to fill in a Grid object, based on the given year,
+    The CellDataGenerator object generates all the required data to fill in a Grid object, based on the given year,
     month, start_time, work_hours, work_day and the signature path.
     """
     def __init__(

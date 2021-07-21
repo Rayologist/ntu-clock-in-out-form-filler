@@ -1,4 +1,4 @@
-from .table import Table, Grid, CellData
+from .table import TableStacker, Grid, CellDataGenerator
 from .header import HeaderInfo
 from docx import Document
 from pathlib import Path
@@ -39,10 +39,10 @@ class ClockInOutForm:
         signature_path: str,
     ) -> None:
 
-        table = Table(self.doc)
+        table = TableStacker(self.doc)
         grids = table.render_dict()
 
-        cell_data = CellData(
+        cell_data = CellDataGenerator(
             year=year,
             month=month,
             start_time=start_time,
