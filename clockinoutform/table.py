@@ -10,6 +10,10 @@ SECOND_HALF_COL_START, SECOND_HALF_COL_END = 4, 7
 
 
 class Table:
+    """
+    The Table objects structures the table in template.docx into a dict
+    """
+
     def __init__(self, doc: Document) -> None:
         self.table = doc.tables[0]
         self.table.style.font.name = "BiauKai"
@@ -41,6 +45,10 @@ class Table:
 
 
 class Cell:
+    """
+    The Cell object is a wrapper class for docx.table._Cell, handling the modification of cells in a Grid object
+    """
+
     def __init__(self, cell: _Cell) -> None:
         self._cell = cell
 
@@ -66,33 +74,38 @@ class Cell:
 
 
 class Grid:
-    def __init__(self, cell_unit: Dict[Dict, List[str]]) -> None:
-        self._col1 = cell_unit["row1"]
-        self._col2 = cell_unit["row2"]
+    """
+    The Grid object contains 6 Cell objects: date, work_hours, signature_start, signature_end, start_time, and end_time.
+    They can be modified through the methods of the Cell object.
+    """
+
+    def __init__(self, grid: Dict[Dict, List[str]]) -> None:
+        self._row1 = grid["row1"]
+        self._row2 = grid["row2"]
 
     @property
     def date(self) -> Cell:
-        return Cell(self._col1[0])
+        return Cell(self._row1[0])
 
     @property
     def work_hours(self) -> Cell:
-        return Cell(self._col1[3])
+        return Cell(self._row1[3])
 
     @property
     def signature_start(self) -> Cell:
-        return Cell(self._col1[1])
+        return Cell(self._row1[1])
 
     @property
     def signature_end(self) -> Cell:
-        return Cell(self._col1[2])
+        return Cell(self._row1[2])
 
     @property
     def start_time(self) -> Cell:
-        return Cell(self._col2[1])
+        return Cell(self._row2[1])
 
     @property
     def end_time(self) -> Cell:
-        return Cell(self._col2[2])
+        return Cell(self._row2[2])
 
     def fill_data(self, **kwargs) -> None:
         date = kwargs.get("date")
@@ -114,6 +127,10 @@ class Grid:
 
 
 class CellData:
+    """
+    The CellData object generates all the required information to fill in a Grid object, based on the given year,
+    month, start_time, work_hours, work_day and the signature path.
+    """
     def __init__(
         self,
         year: str,

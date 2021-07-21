@@ -3,6 +3,9 @@ from typing import Tuple
 
 
 class RunText:
+    """
+    The RunText object is a wrapper class for docx.text.run.Run, adding space padding while modifying the text.
+    """
     def __init__(self, run: Run) -> None:
         if not isinstance(run, Run):
             raise TypeError(f"{run}: {type(run).__name__} not an instance of Run")
@@ -19,6 +22,10 @@ class RunText:
 
 
 class HeaderInfo:
+    """
+    The HeaderInfo object handles adding/modifying texts to the header in the template.docx.
+    """
+
     def __init__(self, doc: Document) -> None:
         self.doc = doc
 

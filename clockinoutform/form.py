@@ -5,6 +5,9 @@ from pathlib import Path
 
 
 class ClockInOutForm:
+    """
+    The ClockInOutForm deals with how the text should be added/modified in the template.docx.
+    """
     def __init__(self) -> None:
         template_path = Path(__file__).absolute().parent / "templates" / "template.docx"
         self.doc = Document(template_path)
@@ -35,6 +38,7 @@ class ClockInOutForm:
         work_day: int,
         signature_path: str,
     ) -> None:
+
         table = Table(self.doc)
         grids = table.render_dict()
 
@@ -53,12 +57,15 @@ class ClockInOutForm:
             grid.fill_data(**cell_data[i])
 
     def save(self, docx_path: str, open_: bool = False) -> None:
+
         self.doc.save(docx_path)
 
         if open_:
+
             import os, sys
 
             if sys.platform == "win32":
                 os.system(f"start {docx_path}")
+
             elif sys.platform == "darwin":
                 os.system(f"open {docx_path}")
