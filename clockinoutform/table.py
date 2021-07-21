@@ -14,7 +14,7 @@ class Table:
         self.table = doc.tables[0]
         self.table.style.font.name = "BiauKai"
 
-    def unitize(
+    def render_dict(
         self, row_start: int = ROW_START, row_end: int = ROW_END
     ) -> Dict[int, Dict]:
         first_half = []
@@ -37,9 +37,6 @@ class Table:
                 "row2": cell[4:],
             }
         return indexed_cell
-
-    def render_dict(self):
-        return self.unitize()
 
 
 class Cell:
