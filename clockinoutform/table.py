@@ -131,6 +131,7 @@ class CellDataGenerator:
     The CellDataGenerator object generates all the required data to fill in a Grid object, based on the given year,
     month, start_time, work_hours, work_day and the signature path.
     """
+
     def __init__(
         self,
         year: str,
