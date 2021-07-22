@@ -156,11 +156,13 @@ class CellDataGenerator:
         Args:
             orient: Determining the mapping between keys and values, and passed to pandas.DataFrame.to_dict, .
                     More info at: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_dict.html
+
         Returns:
             A dict: {index0: {column0: value, column1: value, ...},
                     index1: {column0: value, column1: value, ...},
                     ...
                     }
+                    
         Raises:
             AssertionError: raised when work_days is, say, 25, but there are only, say, 22 or 23 bussiness days
         """
