@@ -175,6 +175,10 @@ class CellDataGenerator:
             )
         ).strftime("%m/%d")
 
+        assert (
+            len(time_table["date"]) >= self._work_day
+        ), f"Only {len(time_table)} bussiness days, but got {self._work_day} work days"
+
         time_table["start_time"] = self._start_time.strftime("%H:%M")
         time_table["end_time"] = self._end_time.strftime("%H:%M")
         time_table["work_hours"] = str(self._work_hours)
@@ -186,9 +190,5 @@ class CellDataGenerator:
             .sort_values("date")
             .reset_index(drop=True)
         )
-
-        assert (
-            len(time_table) == self._work_day
-        ), f"table length ({len(time_table)}) not equal to work day ({self._work_day})"
 
         return time_table.to_dict(orient)
