@@ -61,7 +61,7 @@ form.fill_table(
 ### 4. Save the docx file
 
 * `docx_path`: specify your file path and file name
-* `open_`: open the file, default=```False```
+* `open_`: open the file after saving, default=```False```
 
 ```python
 form.save(
