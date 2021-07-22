@@ -150,7 +150,20 @@ class CellDataGenerator:
         self._work_day = int(work_day)
         self._signature_path = signature_path
 
-    def render_dict(self, method: str = "index") -> Optional[Dict]:
+    def render_dict(self, orient: str = "index") -> Optional[Dict]:
+        """
+        Args:
+            orient: Determining the mapping between keys and values, and passed to pandas.DataFrame.to_dict, .
+                    More info at: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_dict.html
+        Returns:
+            A dict: {index0: {column0: value, column1: value, ...},
+                    index1: {column0: value, column1: value, ...},
+                    ...
+                    }
+        Raises:
+            AssertionError: raised when work_days is, say, 25, but there are only, say, 22 or 23 bussiness days
+        """
+
         time_table = pd.DataFrame()
 
         time_table["date"] = (
@@ -178,4 +191,4 @@ class CellDataGenerator:
             len(time_table) == self._work_day
         ), f"table length ({len(time_table)}) not equal to work day ({self._work_day})"
 
-        return time_table.to_dict(method)
+        return time_table.to_dict(orient)
