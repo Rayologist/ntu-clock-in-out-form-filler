@@ -2,6 +2,7 @@ from .table import TableStacker, Grid, CellDataGenerator
 from .header import HeaderInfo
 from docx import Document
 from pathlib import Path
+from ._types import str_or_int
 
 
 class ClockInOutForm:
@@ -15,8 +16,8 @@ class ClockInOutForm:
 
     def fill_header(
         self,
-        year: str,
-        month: str,
+        year: str_or_int,
+        month: str_or_int,
         department: str,
         name: str,
         expected: str,
@@ -32,8 +33,8 @@ class ClockInOutForm:
 
     def fill_table(
         self,
-        year: str,
-        month: str,
+        year: int,
+        month: int,
         start_time: str,
         work_hours: int,
         work_day: int,
