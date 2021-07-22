@@ -11,7 +11,7 @@ SECOND_HALF_COL_START, SECOND_HALF_COL_END = 4, 7
 
 class TableStacker:
     """
-    The TableStacker object merges the table of two columns into one, and structures the merged column into a dict.
+    The TableStacker object merges the table of two columns into one as in template.docx, and structures the merged column into a dict.
     """
 
     def __init__(self, doc: Document) -> None:
