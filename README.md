@@ -25,8 +25,8 @@ form = ClockInOutForm()
 
 ```python
 form.fill_header(
-    year="2021", 
-    month="7", 
+    year=2021, 
+    month=7, 
     department="linguistics", 
     name="rayologist", 
     expected="40", 
@@ -48,8 +48,8 @@ form.fill_header(
 
 ```python
 form.fill_table(
-    year="2021", 
-    month="7", 
+    year=2021, 
+    month=7, 
     start_time="14:00", 
     work_hours=2, 
     work_day=20, 
@@ -84,16 +84,16 @@ end_month = 8
 for month in range(start_month, end_month + 1):
     form = ClockInOutForm()
     form.fill_header(
-        year=str(year), 
-        month=str(month), 
+        year=year, 
+        month=month, 
         department="linguistics", 
         name="rayologist", 
         expected="40", 
         actual="40"
     )
     form.fill_table(
-        year=str(year), 
-        month=str(month), 
+        year=year, 
+        month=month, 
         start_time="14:00", 
         work_hours=2, 
         work_day=20, 
