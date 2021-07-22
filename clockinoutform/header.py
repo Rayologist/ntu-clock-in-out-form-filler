@@ -6,6 +6,7 @@ class RunText:
     """
     The RunText object is a wrapper class for docx.text.run.Run, adding space padding while modifying the text.
     """
+
     def __init__(self, run: Run) -> None:
         if not isinstance(run, Run):
             raise TypeError(f"{run}: {type(run).__name__} not an instance of Run")

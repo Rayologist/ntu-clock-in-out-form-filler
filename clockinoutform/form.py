@@ -8,6 +8,7 @@ class ClockInOutForm:
     """
     The ClockInOutForm deals with how the text should be added/modified in the template.docx.
     """
+
     def __init__(self) -> None:
         template_path = Path(__file__).absolute().parent / "templates" / "template.docx"
         self.doc = Document(template_path)
