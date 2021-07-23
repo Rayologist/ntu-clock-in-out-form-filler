@@ -58,7 +58,7 @@ class Cell:
 
     def add_text(self, text: Optional[str]) -> None:
         if text is None:
-            return 
+            return
         paragraph_in_cell = self._cell.paragraphs[0]
         paragraph_in_cell.text = text
         self.apply_basic_format(paragraph_in_cell)
