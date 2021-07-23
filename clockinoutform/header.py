@@ -1,5 +1,4 @@
 from ._types import Document, Run
-from typing import Tuple
 
 
 class RunText:
@@ -31,56 +30,62 @@ class HeaderInfo:
         self.doc = doc
 
     @property
-    def year(self) -> Tuple[str, str]:
+    def year(self) -> Run:
         addr = self.doc.paragraphs[0].runs[1]
-        return addr, addr.text
+        return addr
 
     @year.setter
-    def year(self, value: str) -> RunText:
-        return RunText(self.year[0]).add_text(value)
+    def year(self, value: str) -> None:
+        run = RunText(self.year[0])
+        run.add_text(value)
 
     @property
-    def month(self) -> Tuple[str, str]:
+    def month(self) -> Run:
         addr = self.doc.paragraphs[0].runs[3]
-        return addr, addr.text.zfill(2)
+        return addr
 
     @month.setter
-    def month(self, value: str) -> RunText:
+    def month(self, value: str) -> None:
         value = str(value).zfill(2)
-        return RunText(self.month[0]).add_text(value)
+        run = RunText(self.month[0])
+        run.add_text(value)
 
     @property
-    def department(self) -> Tuple[str, str]:
+    def department(self) -> Run:
         addr = self.doc.paragraphs[1].runs[1]
-        return addr, addr.text
+        return addr
 
     @department.setter
-    def department(self, value: str) -> RunText:
-        return RunText(self.department[0]).add_text(value)
+    def department(self, value: str) -> None:
+        run = RunText(self.department[0])
+        run.add_text(value)
 
     @property
-    def name(self) -> Tuple[str, str]:
+    def name(self) -> Run:
         addr = self.doc.paragraphs[1].runs[6]
-        return addr, addr.text
+        return addr
 
     @name.setter
-    def name(self, value: str) -> RunText:
-        return RunText(self.name[0]).add_text(value)
+    def name(self, value: str) -> None:
+        run = RunText(self.name[0])
+        run.add_text(value)
 
     @property
-    def expected(self) -> Tuple[str, str]:
+    def expected(self) -> Run:
         addr = self.doc.paragraphs[1].runs[9]
-        return addr, addr.text
+        return addr
 
     @expected.setter
-    def expected(self, value: str) -> RunText:
-        return RunText(self.expected[0]).add_text(value)
+    def expected(self, value: str) -> None:
+        run = RunText(self.expected[0])
+        run.add_text(value)
 
     @property
-    def actual(self) -> Tuple[str, str]:
+    def actual(self) -> Run:
         addr = self.doc.paragraphs[1].runs[13]
-        return addr, addr.text
+        return addr
 
     @actual.setter
-    def actual(self, value: str) -> RunText:
-        return RunText(self.actual[0]).add_text(value)
+    def actual(self, value: str) -> None:
+        run = RunText(self.actual[0])
+        run.add_text(value)

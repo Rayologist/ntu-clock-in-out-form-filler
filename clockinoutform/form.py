@@ -44,7 +44,7 @@ class ClockInOutForm:
         table = TableStacker(self.doc)
         grids = table.render_dict()
 
-        cell_data = CellDataGenerator(
+        data_generator = CellDataGenerator(
             year=year,
             month=month,
             start_time=start_time,
@@ -52,7 +52,7 @@ class ClockInOutForm:
             work_day=work_day,
             signature_path=signature_path,
         )
-        cell_data = cell_data.render_dict()
+        cell_data = data_generator.render_dict()
 
         for i in range(len(cell_data)):
             grid = Grid(grids[i])

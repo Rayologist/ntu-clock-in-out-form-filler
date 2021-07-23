@@ -56,12 +56,16 @@ class Cell:
         paragraph.style.font.size = Pt(14)
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    def add_text(self, text: str) -> None:
+    def add_text(self, text: Optional[str]) -> None:
+        if text is None:
+            return 
         paragraph_in_cell = self._cell.paragraphs[0]
         paragraph_in_cell.text = text
         self.apply_basic_format(paragraph_in_cell)
 
-    def add_signature(self, signature_path: str) -> None:
+    def add_signature(self, signature_path: Optional[str]) -> None:
+        if signature_path is None:
+            return
         paragraph_in_cell = self._cell.paragraphs[0]
         run = paragraph_in_cell.add_run()
         run.add_tab()
@@ -79,7 +83,7 @@ class Grid:
     They can be modified through the methods of the Cell object.
     """
 
-    def __init__(self, grid: Dict[Dict, List[str]]) -> None:
+    def __init__(self, grid: Dict[str, List[_Cell]]) -> None:
         self._row1 = grid["row1"]
         self._row2 = grid["row2"]
 
@@ -134,8 +138,8 @@ class CellDataGenerator:
 
     def __init__(
         self,
-        year: str,
-        month: str,
+        year: int,
+        month: int,
         start_time: str,
         work_hours: int,
         work_day: int,
@@ -151,7 +155,7 @@ class CellDataGenerator:
         self._work_day = int(work_day)
         self._signature_path = signature_path
 
-    def render_dict(self, orient: str = "index") -> Optional[Dict]:
+    def render_dict(self, orient: str = "index") -> Dict[int, Dict[str, str]]:
         """
         Args:
             orient: Determining the mapping between keys and values, and passed to pandas.DataFrame.to_dict, .
@@ -195,4 +199,6 @@ class CellDataGenerator:
             .reset_index(drop=True)
         )
 
-        return time_table.to_dict(orient)
+        indexed_dict: Dict[int, Dict[str, str]] = time_table.to_dict(orient)
+
+        return indexed_dict
